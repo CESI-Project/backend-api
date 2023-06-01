@@ -9,4 +9,5 @@ const SupplierSchema = mongoose.Schema({
     phone: { type: String, required: true }
 });
 
-module.exports = mongoose.model('Supplier', SupplierSchema);
+const Supplier = mongoose.model("Supplier", SupplierSchema);
+module.exports = Supplier;

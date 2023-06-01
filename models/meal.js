@@ -10,4 +10,5 @@ const MealSchema = mongoose.Schema({
     promotion: { type: Number, default: 0 }
 });
 
-module.exports = mongoose.model('Meal', MealSchema);
+const Meal = mongoose.model("Meal", MealSchema);
+module.exports = Meal;

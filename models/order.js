@@ -18,4 +18,5 @@ const OrderSchema = mongoose.Schema({
     status: { type: String, required: true }
 });
 
-module.exports = mongoose.model('Order', OrderSchema);
+const Order = mongoose.model("Order", OrderSchema);
+module.exports = Order;

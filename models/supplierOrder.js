@@ -8,4 +8,5 @@ const SupplierOrderSchema = mongoose.Schema({
     }]
 });
 
-module.exports = mongoose.model('SupplierOrder', SupplierOrderSchema);
+const SupplierOrder = mongoose.model("SupplierOrder", SupplierOrderSchema);
+module.exports = SupplierOrder;

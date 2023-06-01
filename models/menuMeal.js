@@ -8,4 +8,5 @@ const MenuMealSchema = mongoose.Schema({
     promotion: { type: Number, default: 0 }
 });
 
-module.exports = mongoose.model('MenuMeal', MenuMealSchema);
+const MenuMeal = mongoose.model("MenuMeal", MenuMealSchema);
+module.exports = MenuMeal;

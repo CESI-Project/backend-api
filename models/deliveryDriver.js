@@ -8,4 +8,5 @@ const DeliveryDriverSchema = mongoose.Schema({
     country: { type: String, required: true},
 });
 
-module.exports = mongoose.model('DeliveryDriver', DeliveryDriverSchema);
+const DeliveryDriver = mongoose.model("DeliveryDriver", DeliveryDriverSchema);
+module.exports = DeliveryDriver;
