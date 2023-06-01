@@ -131,6 +131,9 @@ exports.updateUser = async (req, res, next) => {
     } = req;
 
     try {
+        const user = await User.findOne({ _id: id});
+        if ( !user ) { res.status(404).json({message:"User not found."})};
+
         await User.updateOne({ _id: id }, {...req.body, _id: id})
         res.status(200).json({message:"User is updated."})
     }
@@ -149,6 +152,9 @@ exports.deleteUser = async (req, res, next) => {
     } = req;
 
     try {
+        const user = await User.findOne({ _id: id});
+        if ( !user ) { res.status(404).json({message:"User not found."})};
+        
         await User.deleteOne({ _id: id })
         res.status(200).json({message:"User is deleted."})
     }

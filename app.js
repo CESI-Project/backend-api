@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express")
 const mongoose = require("mongoose");
+const path = require('path');
 const app = express();
 
 mongoose.connect('mongodb+srv://ADMIN:ADMIN@cluster0.sbh2htz.mongodb.net/?retryWrites=true&w=majority',
@@ -31,5 +32,6 @@ app.use((req, res, next) => {
 
 const api = require("./api/api");
 app.use("/api", api);
+app.use("/images", express.static(path.join(__dirname, 'images')));
 
 module.exports = app;
