@@ -44,10 +44,16 @@ exports.getRestaurant = async (req, res, next) => {
 
 exports.createRestaurant = async (req, res, next) => {
     try {
-        const restaurant = await new Restaurant({
-            ...req.body,
-            imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-        });
+        let restaurant = {};
+        if (req.file) {
+            restaurant = await new Restaurant({
+                ...req.body,
+                imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+            });
+        }
+        else {
+            restaurant = await new Restaurant({ ...req.body });
+        }
 
         await restaurant.save();
         res.status(201).json({ message: "Restaurant is registered." })
@@ -73,6 +79,11 @@ exports.updateRestaurant = async (req, res, next) => {
         const restaurant = await Restaurant.findOne({ _id: id });
 
         if (!restaurant) { return res.status(404).json({ message: "Restaurant not found." })};
+
+        // after add role
+        // if ((req.auth.role !== "Admin" && req.auth.restaurant !== meal.restaurant) || req.auth.role !== "SuperAdmin") {
+        //     return res.status(401).json({message:"Unauthorized."})
+        // }
 
         const imageUrl = req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : null;
 

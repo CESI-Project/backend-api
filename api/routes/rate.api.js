@@ -7,6 +7,7 @@ const multer = require('../middlewares/multer');
 
 router.get(
     "/",
+    authentication,
     RateController.getRates,
 );
 

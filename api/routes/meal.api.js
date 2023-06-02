@@ -1,40 +1,38 @@
 const express = require("express");
 const router = express.Router();
-const RestaurantController = require("../../controllers/restaurant.controller");
+const MealController = require("../../controllers/meal.controller");
 const authentication = require('../middlewares/authentication')
 const multer = require('../middlewares/multer');
-
 
 router.get(
     "/",
     authentication,
-    RestaurantController.getRestaurants,
+    MealController.getMeals,
 );
 
 router.get(
     "/:id",
-    authentication,
-    RestaurantController.getRestaurant,
+    MealController.getMeal,
 );
 
 router.post(
     "/",
     authentication,
     multer,
-    RestaurantController.createRestaurant,
+    MealController.createMeal,
 );
 
 router.put(
     "/:id",
     authentication,
     multer,
-    RestaurantController.updateRestaurant,
+    MealController.updateMeal,
 );
 
 router.delete(
     "/:id",
     authentication,
-    RestaurantController.deleteRestaurant,
+    MealController.deleteMeal,
 );
 
 module.exports = router;
