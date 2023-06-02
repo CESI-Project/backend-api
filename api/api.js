@@ -10,5 +10,8 @@ router.use("/Restaurants", restaurantsApi);
 const RatesApi = require("./routes/rate.api");
 router.use("/Rates", RatesApi);
 
+const LocalisationApi = require("./routes/localisation.api");
+router.use("/Localisation", LocalisationApi);
+
 
 module.exports = router;
