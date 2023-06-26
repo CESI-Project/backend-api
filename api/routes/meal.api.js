@@ -12,6 +12,7 @@ router.get(
 
 router.get(
     "/:id",
+    authentication,
     MealController.getMeal,
 );
 

@@ -9,7 +9,7 @@ const MealSchema = mongoose.Schema({
     imageUrl: { type: String },
     price: { type: Number, required: true },
     restaurant: { type: mongoose.Schema.Types.ObjectId , ref: "Restaurant", required: true},
-    promotion: { type: Number, default: 0 }
+    promotion: { type: Number, default: null }
 });
 
 const Meal = mongoose.model("Meal", MealSchema);
