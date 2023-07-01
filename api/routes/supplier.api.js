@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const SupplierController = require("../../controllers/supplier.controller");
 const authentication = require('../middlewares/authentication')
-const multer = require('../middlewares/multer');
 
 // gett all suppliers of restaurant
 router.get(
@@ -46,7 +45,7 @@ router.put(
 router.delete(
     "/:id",
     authentication,
-    SupplierController.deleteRate,
+    SupplierController.deleteSupplier,
 );
 
 module.exports = router;

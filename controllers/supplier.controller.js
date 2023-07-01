@@ -18,7 +18,7 @@ exports.createSupplier = async (req, res, next) => {
 
 exports.getSupplier = async (req, res, next) => {
     const {
-        param: { id }
+        params: { id }
     }= req;
 
     try {
@@ -118,6 +118,7 @@ exports.updateSupplier = async (req, res, next) => {
         }
 
         await Supplier.updateOne({ _id: id }, { ...req.body });
+        res.status(200).json({message:"Supplier is updated."})
     }
     catch (error) {
         console.log(error);

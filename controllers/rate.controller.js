@@ -58,7 +58,7 @@ exports.updateRate = async (req, res, next) => {
 
         await Rate.updateOne({ _id: id }, { ...req.body });
         await Restaurant.updateRateCount(rate.restaurant);
-        res.status(200).json({message:"Rate is registered."})
+        res.status(200).json({message:"Rate is updated."})
     }
     catch (error) {
         console.log(error);
