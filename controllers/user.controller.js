@@ -61,6 +61,34 @@ exports.signup = async (req,res, next) => {
     }
 };
 
+exports.signupRestaurant = async (req,res, next) => {
+    const {
+        body: {
+            email,
+            password
+        }
+    } = req;
+
+    try {
+        const hashedPassword = await bcrypt.hash(password, 12);
+        const user = await new User({
+            email,
+            password: hashedPassword,
+            role: "Restaurant"
+        });
+        await user.save();
+        res.status(201).json({
+            message: "User has been created."
+        })
+    }
+    catch (error) {
+        res.status(400).json({
+            success: false,
+            error: error.message
+        })
+    }
+};
+
 exports.login = async (req,res, next) => {
     const {
         body: {
@@ -75,7 +103,7 @@ exports.login = async (req,res, next) => {
         });
         
         if (!user) {
-            res.status(401).json({message: "Le mot de passe ou l'identifiant ne sont pas corrects."})
+            return res.status(401).json({message: "Le mot de passe ou l'identifiant ne sont pas corrects."})
         }
 
         try {
@@ -86,8 +114,7 @@ exports.login = async (req,res, next) => {
             else {                
                 res.status(200).json({
                     userId: user._id,
-                    // add role here ( admin or user )
-                    // role : user.role
+                    role : user.role,
                     token: jwt.sign(
                         {userId: user._id},
                         process.env.SECRET_TOKEN,

@@ -28,6 +28,11 @@ router.post(
 );
 
 router.post(
+    "/signup/restaurant",
+    UserController.signupRestaurant,
+);
+
+router.post(
     "/login",
     UserController.login,
 );

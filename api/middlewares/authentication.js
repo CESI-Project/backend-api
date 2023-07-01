@@ -12,11 +12,11 @@ module.exports = (req, res, next) => {
         const encryptedToken = authorization.split(' ')[1];
         const decodedToken = jwt.decode(encryptedToken, process.env.SECRET_TOKEN);
         const userId = decodedToken.userId;
-        // const role = decodedToken.role;
+        const role = decodedToken.role;
 
         req.auth = {
             userId,
-            // role
+            role
         }
         next();
     } catch (error) {
