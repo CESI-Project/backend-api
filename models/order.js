@@ -6,11 +6,13 @@ const OrderSchema = mongoose.Schema({
     deliveryDriver: { type: mongoose.Schema.Types.ObjectId , ref: "DeliveryDriver", required: true},
     foods: [{
         meal: { type: mongoose.Schema.Types.ObjectId , ref: "Meal", required: true},
-        quantity: { type: Number, default: 1 }
+        quantity: { type: Number, default: 1 },
+        price: { type: Number, defautl: 0 }
     }],
     foodsMenu: [{
         menuMeal: { type: mongoose.Schema.Types.ObjectId , ref: "MenuMeal", required: true},
-        quantity: { type: Number, default: 1}
+        quantity: { type: Number, default: 1},
+        price: { type: Number, defautl: 0 }
     }],
     orderDate: { type: Date, default: Date.now },
     totalPrice: { type: Number, required: true },
