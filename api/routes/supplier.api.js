@@ -27,7 +27,7 @@ router.delete(
 router.get(
     "/:id",
     authentication,
-    RateController.getSupplier,
+    SupplierController.getSupplier,
 );
         
 router.post(

@@ -150,3 +150,41 @@ exports.updateStatusOrder = async (req, res, next) => {
         });
     }
 };
+
+exports.updateDeliveryDriver = async (req, res, next) => {
+    const {
+        params: {
+            id
+        },
+        body : {
+            deliveryDriver
+        }
+    }= req;
+
+    try {
+        const order = await Order.findOne({ _id: id });
+
+        if (!order) {
+            return res.status(404).json({message:"Order not found."})
+        }
+
+        if (req.auth.role !== "Restaurant" ) {
+            return res.status(401).json({message:"Unauthorized."})
+        }
+
+        if (order.restaurant.toString() !== req.auth.userId) {
+            return res.status(401).json({message:"Unauthorized."})
+        }
+
+        order.deliveryDriver = deliveryDriver;
+        await order.save();
+        res.status(200).json({message:"Delivery driver is updated."})
+    }
+    catch (error) {
+        console.log(error);
+        res.status(400).json({
+          success: false,
+          error: error.message,
+        });
+    }
+};

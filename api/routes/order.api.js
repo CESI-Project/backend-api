@@ -40,4 +40,11 @@ router.put(
     OrderController.updateStatusOrder,
 );
 
+// add deliveryOrder if doesn't have
+router.put(
+    "/:id/updateDeliveryDriver",
+    authentication,
+    OrderController.updateDeliveryDriver,
+);
+
 module.exports = router;
