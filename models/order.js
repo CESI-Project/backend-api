@@ -9,11 +9,6 @@ const OrderSchema = mongoose.Schema({
         quantity: { type: Number, default: 1 },
         price: { type: Number, defautl: 0 }
     }],
-    foodsMenu: [{
-        menuMeal: { type: mongoose.Schema.Types.ObjectId , ref: "MenuMeal", required: true},
-        quantity: { type: Number, default: 1},
-        price: { type: Number, defautl: 0 }
-    }],
     orderDate: { type: Date, default: Date.now },
     totalPrice: { type: Number, required: true },
     paymentType: { type: String, required: true },
