@@ -19,9 +19,6 @@ router.use("/Orders", OrdersApi);
 const MealsApi = require("./routes/meal.api");
 router.use("/Meals", MealsApi);
 
-const MenuMealsApi = require("./routes/menuMeal.api");
-router.use("/MenuMeals", MenuMealsApi);
-
 const LocalisationApi = require("./routes/localisation.api");
 router.use("/Localisation", LocalisationApi);
 

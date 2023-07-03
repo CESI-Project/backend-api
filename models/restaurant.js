@@ -1,6 +1,6 @@
 const { ObjectId } = require("bson");
 const mongoose = require("mongoose");
-// lui relier des employés, commentaires et meals
+// lui relier des employés et meals
 
 const RestaurantSchema = mongoose.Schema({
     name: { type: String, required: true },
@@ -12,16 +12,7 @@ const RestaurantSchema = mongoose.Schema({
     rate: { type: Number, default: null, max: 5 },
     foodType: [{ 
         type: String
-    }]
-    // schedule: { 
-        // monday:
-        // tuesday:
-        // wednesday:
-        // thursday:
-        // friday:
-        // saturday:
-        // sunday:
-    //  } 7 jours => pensé a mettre nbr pour les jours 0 a 6 
+    }],
 });
 
 RestaurantSchema.statics.updateRateCount = async function (id) {    

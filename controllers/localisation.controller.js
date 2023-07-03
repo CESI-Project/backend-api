@@ -1,4 +1,4 @@
-const Countries = require('Countries-Api');
+const Countries = require('countries-api');
 
 exports.getCountries = async (req, res, next) => {
     const {
