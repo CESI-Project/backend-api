@@ -10,6 +10,12 @@ router.get(
     SupplierController.getSuppliers,
 );
 
+router.get(
+    "/allSuppliers",
+    authentication,
+    SupplierController.getAllSuppliers,
+);
+
 
 router.post(
     "/addSuppliers/:id",

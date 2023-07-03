@@ -40,9 +40,26 @@ exports.getSuppliers = async (req, res, next) => {
     } = req;
 
     try {
+        console.log("la avant ")
         const suppliers = await Supplier.find({
-            "restaurants._id" : [id]
+            "restaurants" : [id]
         });
+        console.log("la apres ", suppliers)
+        res.status(200).json(suppliers);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(400).json({
+          success: false,
+          error: error.message,
+        });
+    }
+};
+
+exports.getAllSuppliers = async (req, res, next) => {
+    try {
+        const suppliers = await Supplier.find();
+
         res.status(200).json(suppliers);
     }
     catch (error) {

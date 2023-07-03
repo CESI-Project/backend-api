@@ -7,10 +7,9 @@ const SupplierSchema = mongoose.Schema({
     city: { type: String, required: true},
     country: { type: String, required: true},
     phone: { type: String, required: true },
-    restaurants: [{
-        name: { type: String, required: true },
-        _id : { type: mongoose.Schema.Types.ObjectId, required: true }
-    }]
+    restaurants: [
+        { type: mongoose.Schema.Types.ObjectId, ref: "restaurant" }
+    ]
 });
 
 const Supplier = mongoose.model("Supplier", SupplierSchema);
