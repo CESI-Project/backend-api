@@ -4,9 +4,7 @@ const Rate = require("../models/rate");
 const Restaurant = require("../models/restaurant");
 const LocalDB = require("./setup.db");
 const expect = require('chai').expect;
-
-chai.expect();
-
+ 
 describe("Test rate model", () => {
   let db;
   before((done) => {
