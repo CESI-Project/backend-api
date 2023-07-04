@@ -11,9 +11,7 @@ const OrderSchema = mongoose.Schema({
     }],
     orderDate: { type: Date, default: Date.now },
     totalPrice: { type: Number, required: true },
-    paymentType: { type: String, required: true },
-    status: { type: String, required: true, enum: ["preparation", "delivery", "livery"]},
-    deliveryDriver: { type: mongoose.Schema.Types.ObjectId }
+    status: { type: String, required: true, enum: ["waiting", "preparing", "delivering", "delivered"]},
 });
 
 const Order = mongoose.model("Order", OrderSchema);
