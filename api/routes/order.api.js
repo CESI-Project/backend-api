@@ -10,6 +10,12 @@ router.get(
 );
 
 router.get(
+    "/byRestaurant/:id",
+    authentication,
+    OrderController.getOrdersByRestaurant,
+);
+
+router.get(
     "/:id/status",
     authentication,
     OrderController.getOrderStatus,

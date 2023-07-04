@@ -14,6 +14,26 @@ exports.getMeals = async (req, res, next) => {
     }
 };
 
+exports.getMealsByRestaurant = async (req, res, next) => {
+    const {
+        params: {
+            id
+        }
+    } = req;
+    try {
+        const meals = await Meal.find({ restaurant: id});
+        res.status(200).json(meals);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(400).json({
+          success: false,
+          error: error.message,
+        });
+    }
+};
+
+
 exports.getMeal = async (req, res, next) => {
     const {
         params: {

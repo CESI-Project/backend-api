@@ -16,6 +16,13 @@ router.get(
     MealController.getMeal,
 );
 
+
+router.get(
+    "/byRestaurant/:id",
+    authentication,
+    MealController.getMealsByRestaurant,
+);
+
 router.post(
     "/",
     authentication,
