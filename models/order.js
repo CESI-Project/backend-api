@@ -7,11 +7,11 @@ const OrderSchema = mongoose.Schema({
     foods: [{
         meal: { type: mongoose.Schema.Types.ObjectId , ref: "Meal", required: true},
         quantity: { type: Number, default: 1 },
-        price: { type: Number, defautl: 0 }
+        price: { type: Number, default: 0 }
     }],
     orderDate: { type: Date, default: Date.now },
     totalPrice: { type: Number, required: true },
-    status: { type: String, required: true, enum: ["waiting", "preparing", "delivering", "delivered"]},
+    status: { type: String, required: true, enum: ["waiting", "preparing", "delivering", "delivered"], default: "waiting"},
 });
 
 const Order = mongoose.model("Order", OrderSchema);

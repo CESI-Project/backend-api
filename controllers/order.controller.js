@@ -61,7 +61,7 @@ exports.createOrder = async (req, res, next) => {
     try {
         const order =await new Order({...req.body});
         await order.save();
-        res.status(201).json({message:"Order is registered."})
+        res.status(201).json({ message:"Order is registered.", _id: order._id })
     }
     catch (error) {
         console.log(error);
