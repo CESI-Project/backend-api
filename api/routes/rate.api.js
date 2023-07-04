@@ -11,6 +11,12 @@ router.get(
     RateController.getRates,
 );
 
+router.get(
+    "/:id",
+    authentication,
+    RateController.getRate,
+);
+
 router.post(
     "/",
     authentication,

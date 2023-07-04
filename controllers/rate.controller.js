@@ -16,6 +16,28 @@ exports.getRates = async (req, res, next) => {
 };
 
 
+exports.getRate = async (req, res, next) => {
+    const {
+        params: {
+            id
+        }
+    }= req;
+
+    try {
+        const rate = await Rate.find({ _id: id});
+        res.status(200).json(rate);
+    }
+    catch (error) {
+        console.log(error);
+        res.status(400).json({
+          success: false,
+          error: error.message,
+        });
+    }
+};
+
+
+
 exports.createRate = async (req, res, next) => {
     const {
         body: {
@@ -27,7 +49,7 @@ exports.createRate = async (req, res, next) => {
         const rate = await new Rate({...req.body});
         await rate.save();
         await Restaurant.updateRateCount(restaurant);
-        res.status(201).json({message:"Rate is registered."})
+        res.status(201).json({message:"Rate is registered.", _id: rate._id})
     }
     catch (error) {
         console.log(error);

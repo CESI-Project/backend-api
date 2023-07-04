@@ -56,7 +56,7 @@ exports.createRestaurant = async (req, res, next) => {
         }
 
         await restaurant.save();
-        res.status(201).json({ message: "Restaurant is registered." })
+        res.status(201).json({message: "Restaurant is registered.", _id: restaurant._id})
     }
     catch (error) {
         console.log(error);
@@ -65,6 +65,7 @@ exports.createRestaurant = async (req, res, next) => {
           error: error.message,
         });
     }
+    return next();
 };
 
 exports.updateRestaurant = async (req, res, next) => {
@@ -122,11 +123,13 @@ exports.deleteRestaurant = async (req, res, next) => {
         if (!restaurant) {
             return res.status(404).json({ message: "Restaurant not found." });
         }
-        // if (req.auth.role === "Admin") {    
-        const filename = restaurant.imageUrl.split('/images/')[1];
-        fs.unlink(`images/${filename}`, async () => {
-            await Restaurant.deleteOne({ _id: id })
-        })
+        // if (req.auth.role === "Admin") {
+        if ( restaurant.imageUrl ) {
+            const filename = restaurant.imageUrl.split('/images/')[1];
+            fs.unlink(`images/${filename}`, async () => {
+                await Restaurant.deleteOne({ _id: id })
+            })
+        }
         res.status(200).json({ message: "Restaurant is deleted." })
         // }
         // else { res.status(401).json({message:"Unauthorized."}) }

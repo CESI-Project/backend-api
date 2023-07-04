@@ -75,7 +75,7 @@ exports.createMeal = async (req, res, next) => {
             meal = await new Meal({ ...req.body });
         }
         await meal.save();
-        res.status(201).json({message:"Meal is registered."})
+        res.status(201).json({message:"Meal is registered.", _id: meal._id})
     }
     catch (error) {
         console.log(error);
