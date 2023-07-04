@@ -11,7 +11,7 @@ const OrderSchema = mongoose.Schema({
     }],
     orderDate: { type: Date, default: Date.now },
     totalPrice: { type: Number, required: true },
-    status: { type: String, required: true, enum: ["confirmation", "preparation", "delivery", "livery"]},
+    status: { type: String, required: true, enum: ["waiting", "preparing", "delivering", "delivered"]},
 });
 
 const Order = mongoose.model("Order", OrderSchema);
