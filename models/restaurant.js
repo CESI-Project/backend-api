@@ -5,10 +5,10 @@ const mongoose = require("mongoose");
 const RestaurantSchema = mongoose.Schema({
     name: { type: String, required: true },
     imageUrl: { type: String },
-    // address: { type: String, required: true},
-    // postalCode: { type: Number, required: true },
-    // city: { type: String, required: true},
-    // country: { type: String, required: true},
+    address: { type: String, required: true},
+    postalCode: { type: Number, required: true },
+    city: { type: String, required: true},
+    country: { type: String, required: true},
     rate: { type: Number, default: null, max: 5 },
     foodType: [{ 
         type: String
