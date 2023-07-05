@@ -1,5 +1,6 @@
 const Order = require("../models/order");
-const Restaurant = require("../models/restaurant");
+const Meal = require("../models/meal")
+const { asyncForEach } = require("../helpers/helpers");
 
 exports.getOrder = async (req, res, next) => {
     const {
@@ -25,8 +26,16 @@ exports.getOrdersByRestaurant = async (req, res, next) => {
     } = req;
 
     try {
-        const order = await Order.find({ restaurant: id});
-        res.status(200).json(order);
+        const orders = await Order.find({ restaurant: id});
+        const orderDetails = [];
+        await asyncForEach(orders, async (order) => {
+            const mealsDetails = [];
+            await asyncForEach(order.foods, async (food) => { 
+                mealsDetails.push(await Meal.getMealByOrder(food));
+            });
+            orderDetails.push(await order.formatOrderDetails(mealsDetails))
+        });
+        res.status(200).json(orderDetails);
     }
     catch (error) {
         console.log(error);
