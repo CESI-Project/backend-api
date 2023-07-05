@@ -142,13 +142,16 @@ exports.login = async (req,res, next) => {
                 res.status(401).json({message: "Le mot de passe ou l'identifiant ne sont pas corrects."})
             }
             else {          
-                res.status(200).json({
+                return res.status(200).json({
                     userId: user._id,
                     role : user.role,
-                    token: jwt.sign(
-                        {userId: user._id},
+                    token: jwt.sign({
+                        userId: user._id, 
+                        role: user.role,
+                        restaurant: user.restaurant || ""
+                    },
                         process.env.SECRET_TOKEN,
-                        {expiresIn: '4h'}
+                        { expiresIn: '10m' }
                     )
                 });
             }   

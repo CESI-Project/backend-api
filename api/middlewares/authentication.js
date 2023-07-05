@@ -13,11 +13,14 @@ module.exports = (req, res, next) => {
         const decodedToken = jwt.decode(encryptedToken, process.env.SECRET_TOKEN);
         const userId = decodedToken.userId;
         const role = decodedToken.role;
+        const restaurant = decodedToken.restaurant;
 
         req.auth = {
             userId,
-            role
+            role,
+            restaurant
         }
+
         next();
     } catch (error) {
         res.status(401).json({ error });
