@@ -162,10 +162,6 @@ exports.updateStatusOrder = async (req, res, next) => {
             return res.status(401).json({message:"Unauthorized."})
         }
 
-        if (order.restaurant.toString() !== req.auth.userId) {
-            return res.status(401).json({message:"Unauthorized."})
-        }
-
         order.status = status;
         await order.save();
         res.status(200).json({message:"Order status is updated."})
