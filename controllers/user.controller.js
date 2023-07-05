@@ -135,23 +135,22 @@ exports.login = async (req,res, next) => {
         if (!user) {
             return res.status(401).json({message: "Un utilisateur ayant cette adresse mail existe déjà."})
         }
-
+        
         try {
             const isSamePassword = await bcrypt.compare(password, user.password)
             if (!isSamePassword) {
                 res.status(401).json({message: "Le mot de passe ou l'identifiant ne sont pas corrects."})
             }
-            else {                
+            else {          
                 res.status(200).json({
                     userId: user._id,
                     role : user.role,
                     token: jwt.sign(
                         {userId: user._id},
                         process.env.SECRET_TOKEN,
-                        ...(user.restaurant),
                         {expiresIn: '4h'}
                     )
-              });
+                });
             }   
         }
         catch (error) {

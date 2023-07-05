@@ -1,5 +1,6 @@
 const Order = require("../models/order");
 const Meal = require("../models/meal")
+const User = require("../models/user")
 const { asyncForEach } = require("../helpers/helpers");
 
 exports.getOrder = async (req, res, next) => {
@@ -162,7 +163,9 @@ exports.updateStatusOrder = async (req, res, next) => {
             return res.status(401).json({message:"Unauthorized."})
         }
 
-        if (order.restaurant !== req.auth.restaurant) {
+        const userRestaurant = await User.findOne({ _id: req.auth.userId }).select('restaurant -_id')
+
+        if (!userRestaurant || (userRestaurant && userRestaurant !== order.restaurant)) {
             return res.status(401).json({message:"Unauthorized."})
         }
 
