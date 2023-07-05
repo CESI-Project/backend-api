@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const User = require('./user');
 
 const OrderSchema = mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId , ref: "User", required: true},
@@ -15,9 +16,11 @@ const OrderSchema = mongoose.Schema({
 });
 
 OrderSchema.methods.formatOrderDetails = async function ( mealsDetails ) {
+    const user = await User.findOne({ _id: this.user}).select('firstname lastname');
+
     const details = {
         _id: this._id,
-        user: this.user,
+        user,
         restaurant: this.restaurant,
         deliveryDriver: this.deliveryDriver,
         foods: mealsDetails,
