@@ -9,5 +9,20 @@ const MealSchema = mongoose.Schema({
     restaurant: { type: mongoose.Schema.Types.ObjectId , ref: "Restaurant", required: true},
 });
 
+
+MealSchema.statics.getMealByOrder = async function ( mealValue ) {
+    const mealResult = await Meal.findById(mealValue.meal).select( 'name type price' );
+    const formatMeal = {
+        meal : {
+            name: mealResult.name,
+            type: mealResult.type,
+            price: mealResult.price,
+        },
+        price: mealValue.price,
+        quantity: mealValue.quantity
+    }
+    return formatMeal;
+};
+
 const Meal = mongoose.model("Meal", MealSchema);
 module.exports = Meal;

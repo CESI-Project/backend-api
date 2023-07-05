@@ -14,5 +14,20 @@ const OrderSchema = mongoose.Schema({
     status: { type: String, required: true, enum: ["waiting", "preparing", "delivering", "delivered"], default: "waiting"},
 });
 
+OrderSchema.methods.formatOrderDetails = async function ( mealsDetails ) {
+    const details = {
+        _id: this._id,
+        user: this.user,
+        restaurant: this.restaurant,
+        deliveryDriver: this.deliveryDriver,
+        foods: mealsDetails,
+        totalPrice: this.totalPrice,
+        status: this.status
+    }
+
+    return details;
+};
+
+
 const Order = mongoose.model("Order", OrderSchema);
 module.exports = Order;
