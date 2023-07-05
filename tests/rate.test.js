@@ -5,6 +5,7 @@ const Restaurant = require("../models/restaurant");
 const LocalDB = require("./setup.db");
 const expect = require('chai').expect;
  
+// unit test
 describe("Test rate model", () => {
   let db;
   before((done) => {
