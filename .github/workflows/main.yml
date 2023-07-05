@@ -20,5 +20,9 @@ jobs:
         with:
           path: node_modules
           key: backflip-api-${{ hashFiles('package-lock.json') }}
+      - name: Install dependencies
+        run: |
+          npm install --no-bin-links
+          node node_modules/mongodb-memory-server/postinstall.js
       - name: Tests check
         run: npm run test:unit
