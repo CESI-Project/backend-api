@@ -79,7 +79,14 @@ exports.signupRestaurant = async (req,res, next) => {
     const {
         body: {
             email,
-            password
+            password,
+            firstName = "",
+            lastName = "",
+            phone,
+            address,
+            postalCode,
+            city,
+            country
         }
     } = req;
 
@@ -88,7 +95,14 @@ exports.signupRestaurant = async (req,res, next) => {
         const user = await new User({
             email,
             password: hashedPassword,
-            role: "Restaurant"
+            role: "Restaurant",
+            phone,
+            address,
+            postalCode,
+            city,
+            country,
+            firstName,
+            lastName
         });
         await user.save();
         res.status(201).json({
