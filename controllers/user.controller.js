@@ -38,7 +38,14 @@ exports.signup = async (req,res, next) => {
     const {
         body: {
             email,
-            password
+            password,
+            firstName,
+            lastName,
+            phone,
+            address,
+            postalCode,
+            city,
+            country
         }
     } = req;
 
@@ -46,7 +53,14 @@ exports.signup = async (req,res, next) => {
         const hashedPassword = await bcrypt.hash(password, 12);
         const user = await new User({
             email,
-            password: hashedPassword
+            password: hashedPassword,
+            firstName,
+            lastName,
+            phone,
+            address,
+            postalCode,
+            city,
+            country
         });
         await user.save();
         res.status(201).json({
@@ -103,7 +117,7 @@ exports.login = async (req,res, next) => {
         });
         
         if (!user) {
-            return res.status(401).json({message: "Le mot de passe ou l'identifiant ne sont pas corrects."})
+            return res.status(401).json({message: "Un utilisateur ayant cette adresse mail existe déjà."})
         }
 
         try {
