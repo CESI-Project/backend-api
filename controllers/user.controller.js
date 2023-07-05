@@ -86,7 +86,8 @@ exports.signupRestaurant = async (req,res, next) => {
             address,
             postalCode,
             city,
-            country
+            country,
+            restaurant
         }
     } = req;
 
@@ -102,7 +103,8 @@ exports.signupRestaurant = async (req,res, next) => {
             city,
             country,
             firstName,
-            lastName
+            lastName,
+            restaurant
         });
         await user.save();
         res.status(201).json({
@@ -146,6 +148,7 @@ exports.login = async (req,res, next) => {
                     token: jwt.sign(
                         {userId: user._id},
                         process.env.SECRET_TOKEN,
+                        ...(user.restaurant),
                         {expiresIn: '4h'}
                     )
               });

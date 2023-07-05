@@ -11,7 +11,8 @@ const UserSchema = mongoose.Schema({
     postalCode: { type: Number, required: true },
     city: { type: String, required: true },
     country: { type: String, required: true },
-    role: { type: String, required: true, default: "User" , enum: ["User", "Restaurant"]}
+    role: { type: String, required: true, default: "User" , enum: ["User", "Restaurant"]},
+    restaurant: { type: mongoose.Schema.Types.ObjectId , ref: "Restaurant" },
 });
 
 UserSchema.plugin(emailUniqueValidator);
