@@ -16,7 +16,7 @@ const OrderSchema = mongoose.Schema({
 });
 
 OrderSchema.methods.formatOrderDetails = async function ( mealsDetails ) {
-    const user = await User.findOne({ _id: this.user}).select('firstname lastname');
+    const user = await User.findOne({ _id: this.user}).select('firstName lastName');
 
     const details = {
         _id: this._id,
