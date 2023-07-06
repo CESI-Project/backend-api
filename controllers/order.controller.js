@@ -159,13 +159,13 @@ exports.updateStatusOrder = async (req, res, next) => {
             return res.status(404).json({message:"Order not found."})
         }
 
-        if (req.auth.role !== "Restaurant" ) {
-            return res.status(401).json({message:"Unauthorized."})
-        }
-        
-        if (!req.auth.restaurant || (req.auth.restaurant && req.auth.restaurant !== order.restaurant.valueOf())) {
-            return res.status(401).json({message:"Unauthorized."})
-        }
+        // if (req.auth.role !== "Restaurant" ) {
+        //     return res.status(401).json({message:"Unauthorized."})
+        // }
+        //
+        // if (!req.auth.restaurant || (req.auth.restaurant && req.auth.restaurant !== order.restaurant.valueOf())) {
+        //     return res.status(401).json({message:"Unauthorized."})
+        // }
 
         order.status = status;
         await order.save();

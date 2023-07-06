@@ -42,7 +42,7 @@ router.delete(
 // modify status
 router.put(
     "/:id/updateStatus",
-    authentication,
+    // authentication,
     OrderController.updateStatusOrder,
 );
 

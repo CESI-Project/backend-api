@@ -4,7 +4,7 @@ const User = require('./user');
 const OrderSchema = mongoose.Schema({
     user: { type: mongoose.Schema.Types.ObjectId , ref: "User", required: true},
     restaurant: { type: mongoose.Schema.Types.ObjectId , ref: "Restaurant", required: true},
-    deliveryDriver: { type: mongoose.Schema.Types.ObjectId , ref: "DeliveryDriver", required: true},
+    deliveryDriver: { type: mongoose.Schema.Types.ObjectId , ref: "DeliveryDriver"},
     foods: [{
         meal: { type: mongoose.Schema.Types.ObjectId , ref: "Meal", required: true},
         quantity: { type: Number, default: 1 },
