@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const MealSchema = mongoose.Schema({
     name: { type: String, required: true },
-    type: { type: String, required: true},
+    type: { type: String, required: true, enum: ["boisson", "repas", "dessert"]},
     imageUrl: { type: String },
     price: { type: Number, required: true },
     description: { type: String, required: true },
